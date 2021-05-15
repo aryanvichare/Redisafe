@@ -15,43 +15,42 @@ export default function Welcome() {
       });
 
    
-    
+    if(fontLoaded){
     return (
         <View style={styles.container}>
-            <View style={styles.box}>
-            <Image source={require('../assets/logo.png')} style={styles.logo}></Image>
-            <TouchableOpacity onPress={()=>navigation.navigate('Signup')}>
-                <View style={styles.btn}>
-                <Text style={styles.title}>Get Started</Text>
+            <ImageBackground source={require('../assets/bg.png')} style={{height:'100%', width:'100%'}} imageStyle={{resizeMode:'cover', alignSelf:'flex-end'}}>
+            <View style={{marginHorizontal:'5%', marginTop:'10%'}}>
+                <View style={{marginTop:'50%'}}></View>
+                <Image source={require('../assets/logo.png')} style={styles.logo}></Image>
+                <TouchableOpacity onPress={()=>navigation.navigate('Signup')}>
+                    <View style={styles.btn}>
+                    <Text style={styles.title}>Get Started</Text>
+                    </View>
+                </TouchableOpacity>
+
                 </View>
-            </TouchableOpacity>
-            </View>
+                </ImageBackground>
             
-          
         </View>
     );
 
+}
+else{
+    return(<View></View>)
+}
 }
 
 const styles = StyleSheet.create({
     container: {
         height: '100%',
         position: 'relative',
-        backgroundColor: '#005792'
-    },
-    box:{
-        width:'90%',
-        height:'50%',
-        marginTop:'50%',
-        borderRadius:20,
-        backgroundColor:'#FFF',
-        alignSelf:'center',
+        backgroundColor: '#F04D4E',
     },
     logo: {
-        width:'60%',
-        height:'75%',
+        width:'20%',
+        height:'20%',
         resizeMode:'contain',
-        alignSelf:'center',
+        alignSelf:'flex-start',
     },
     title: {
         fontFamily:'B',
@@ -69,7 +68,7 @@ const styles = StyleSheet.create({
         alignSelf:'center'
     },
     btn: {
-        backgroundColor:"#005792",
+        backgroundColor:`linear-gradient(90deg, rgba(239,246,251,1) 0%, rgba(244,172,172,1) 50%);`,
         paddingVertical:'2.5%',
         width:'90%',
         alignSelf:'center',
