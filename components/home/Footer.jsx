@@ -9,7 +9,7 @@ const Footer = () => {
             <a
               href='#_'
               className='text-xl font-black leading-none text-white select-none logo'>
-              <img className='w-8' src='images/logo.png' alt='Redisafe Logo' />
+              <img className='w-8' src='images/logo.png' alt='RediSafe Logo' />
             </a>
             <p className='my-4 text-xs leading-normal text-white'>
               RediSafe is a modern app that allows you to monitor your health
@@ -174,7 +174,7 @@ const Footer = () => {
         </div>
         <div className='flex flex-col items-start justify-between pt-10 mt-10 border-t border-white md:flex-row md:items-center'>
           <p className='mb-6 text-sm text-left text-white md:mb-0'>
-            © Copyright 2021 Redisafe. All Rights Reserved.
+            © Copyright 2021 RediSafe. All Rights Reserved.
           </p>
           <div className='flex items-start justify-start space-x-6 md:items-center md:justify-center'>
             <a

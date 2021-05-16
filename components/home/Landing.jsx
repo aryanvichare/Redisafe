@@ -16,7 +16,7 @@ const Landing = () => {
               <div className='w-full pb-6 space-y-6 sm:max-w-md lg:max-w-lg md:space-y-4 lg:space-y-8 xl:space-y-9 sm:pr-5 lg:pr-0 md:pb-8'>
                 <h1 className='text-4xl font-extrabold tracking-tight text-white sm:text-5xl md:text-4xl lg:text-5xl xl:text-5xl'>
                   <span className='block text-transparent bg-clip-text bg-gradient-to-br from-primary-light to-primary'>
-                    Redisafe
+                    RediSafe
                   </span>
                 </h1>
                 <p className='mx-auto text-base text-gray-500 sm:max-w-md lg:text-lg md:max-w-xl'>
