@@ -2,6 +2,7 @@ const colors = require("tailwindcss/colors");
 
 module.exports = {
   purge: ["./pages/**/*.{js,ts,jsx,tsx}", "./components/**/*.{js,ts,jsx,tsx}"],
+  mode: "jit",
   presets: [],
   darkMode: false, // or 'media' or 'class'
   theme: {
@@ -743,6 +744,8 @@ module.exports = {
       }),
       colors: {
         primary: "#F04D4E",
+        "primary-dark": "",
+        "primary-light": "#FC6E6E",
         secondary: "#0ABDC6",
         "dark-gray": "#252529",
         "dark-gray-secondary": "303136",
