@@ -7,6 +7,7 @@ import Welcome from './src/screens/welcome';
 import Login from './src/screens/login';
 import Register from './src/screens/register';
 import Metrics from './src/screens/metrics';
+import Calibrate from './src/screens/calibrate';
 
 
 const Stack = createStackNavigator();
@@ -35,6 +36,11 @@ function MyStack() {
       <Stack.Screen 
         name="Metrics" 
         component={Metrics} 
+        options={{ headerShown: false}} 
+      />
+      <Stack.Screen 
+        name="Calibrate" 
+        component={Calibrate} 
         options={{ headerShown: false}} 
       /> 
     </Stack.Navigator>

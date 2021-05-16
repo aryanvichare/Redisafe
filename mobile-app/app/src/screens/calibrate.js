@@ -5,9 +5,11 @@ import Svg, { Line } from 'react-native-svg';
 import { Icon } from 'react-native-elements'
 import { useFonts } from 'expo-font';
 import { LinearGradient } from 'expo-linear-gradient';
+import Done from '../assets/calibrated.png';
+import Progress from '../assets/calibrate.png';
 
 
-export default function Metrics() {
+export default function Calibrate() {
     const navigation = useNavigation();
     const [fontLoaded] = useFonts({
         B: require('../assets/fonts/bold.ttf'),
@@ -15,6 +17,14 @@ export default function Metrics() {
         H: require('../assets/fonts/heavy.ttf'),
 
       });
+    const [calibrated,setCalibrated] = useState(false);
+
+    useEffect(()=>{
+        setTimeout(() => {
+            setCalibrated(true);
+        }, 3000);
+
+    },[calibrated])
 
    
     if(fontLoaded){
@@ -23,37 +33,16 @@ export default function Metrics() {
             <ImageBackground source={require('../assets/bg.png')} style={{height:'100%', width:'100%'}} imageStyle={{resizeMode:'cover', alignSelf:'flex-end'}}>
             <View style={{marginHorizontal:'7.5%', marginTop:'10%'}}>
                 <Image source={require('../assets/logo.png')} style={styles.logo}></Image>
+                <View style={{marginTop:'40%'}}></View>
+                <Image source={calibrated?Done:Progress} style={styles.calibrate}></Image>
                 <View style={{marginTop:'5%'}}></View>
-                <Text style={{fontFamily:'E', fontSize:45, color:"#FFF", lineHeight:45, width:'80%'}}>Personal Metrics</Text>
-                <Text style={{fontFamily:'B', fontSize:20, color:"#FFF", marginTop:'5%'}}>We don’t store any of this data, this is for your health analytics.</Text>
-                <View style={{marginTop:'15%', justifyContent:'space-evenly'}}></View>
+                <Text style={{fontFamily:'H', fontSize:45, color:"#FFF", lineHeight:45}}>{!calibrated ? "Calibrating Hardware...":"Hardware Calibrated"}</Text>
+                {!calibrated &&<Text style={{fontFamily:'B', fontSize:24, color:"#FFF", marginTop:'5%'}}>Please wait, this may take a while...</Text>}
                
+                {!calibrated &&<TouchableOpacity onPress={()=>navigation.navigate('Register')}><Text style={{color:"#FCDBDC", fontFamily:"E", fontSize:20, marginLeft:'1%',
+                 marginTop:'5%', backgroundColor:`rgba(252, 219, 220, 0.3)`, width:'17%', lineHeight:18}}>or skip</Text></TouchableOpacity>}
 
-               <View style={{marginTop:'5%', backgroundColor:`rgba(252, 219, 220, 0.2)`, borderRadius:15, paddingHorizontal:'5%', paddingVertical:'1.5%', flexDirection:'row'}}>
-                   <View style={{width:'90%'}}>
-                       <Text style={{fontFamily:'E', color:"#FAD8D8"}}>Age</Text>
-                       <TextInput placeholder="years" style={{fontFamily:"B", color:"#FFF", fontSize:20}} placeholderTextColor="#FAD8D8"></TextInput>
-                   </View>
-               </View>
-
-               <View style={{marginTop:'5%', backgroundColor:`rgba(252, 219, 220, 0.2)`, borderRadius:15, paddingHorizontal:'5%', paddingVertical:'1.5%', flexDirection:'row'}}>
-                   <View style={{width:'90%'}}>
-                       <Text style={{fontFamily:'E', color:"#FAD8D8"}}>Height</Text>
-                       <TextInput placeholder="ft" style={{fontFamily:"B", color:"#FFF", fontSize:20}} placeholderTextColor="#FAD8D8"></TextInput>
-                   </View>
-                   <Icon name="human-male-height" type="material-community" color={`rgba(250, 216, 216, 0.5)`} size={35} style={{textAlign:'right'}}></Icon>
-               </View>
-               <View style={{marginTop:'5%', backgroundColor:`rgba(252, 219, 220, 0.2)`, borderRadius:15, paddingHorizontal:'5%', paddingVertical:'1.5%', flexDirection:'row'}}>
-                   <View style={{width:'93%'}}>
-                       <Text style={{fontFamily:'E', color:"#FAD8D8"}}>Weight</Text>
-                       <TextInput placeholder="lb" style={{fontFamily:"B", color:"#FFF", fontSize:20}} placeholderTextColor="#FAD8D8"></TextInput>
-                   </View>
-                   <Icon name="weight" type="font-awesome-5" color={`rgba(250, 216, 216, 0.5)`} size={25} style={{textAlign:'right', marginTop:'25%'}}></Icon>
-               </View>
-
-
-
-               <TouchableOpacity onPress={()=>navigation.navigate('Calibrate')}>
+                {calibrated &&<TouchableOpacity onPress={()=>navigation.navigate('Calibrate')}>
                 <LinearGradient
                     // Button Linear Gradient
                     colors={['#FFFFFF', '#F4ACAC']}
@@ -62,9 +51,7 @@ export default function Metrics() {
                     style={styles.btn}>
                     <Text style={styles.btnlabel}>Continue</Text>
                 </LinearGradient>
-                </TouchableOpacity>
-                <TouchableOpacity><Text style={{color:"#FCDBDC", fontFamily:"E", fontSize:20, marginLeft:'10%',
-                 marginTop:'5%', backgroundColor:`rgba(252, 219, 220, 0.3)`, width:'19%', lineHeight:18}}>or skip</Text></TouchableOpacity>
+                </TouchableOpacity>}
 
                 </View>
                 </ImageBackground>
@@ -87,6 +74,12 @@ const styles = StyleSheet.create({
     logo: {
         width:'15%',
         height:'15%',
+        resizeMode:'contain',
+        alignSelf:'flex-start',
+    },
+    calibrate: {
+        width:'40%',
+        height:'25%',
         resizeMode:'contain',
         alignSelf:'flex-start',
     },
