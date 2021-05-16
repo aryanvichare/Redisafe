@@ -10,6 +10,7 @@
     @apply flex flex-row justify-center items-center;
   }
   .bg-header-dashboard {
-    background: linear-gradient(87.8deg, #ed213a 6.19%, #93291e 99.43%);
+    /* background: linear-gradient(87.8deg, #ed213a 6.19%, #93291e 99.43%); */
+    background-color: #ed213a;
   }
 }
