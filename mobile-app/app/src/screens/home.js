@@ -173,7 +173,7 @@ export default function Home() {
                 </View>
                 </ImageBackground>
 
-                <View style={{flexDirection:'row', width:'90%', borderRadius:10, backgroundColor:"#FEF5F5", shadowOffset: {
+                <View style={{flexDirection:'row', width:'90%', borderRadius:15, backgroundColor:"#FEF5F5", shadowOffset: {
                         width: 0,
                         height: 6,
                     },
@@ -181,7 +181,7 @@ export default function Home() {
                     shadowRadius: 10,
                     elevation: 10, position:'absolute', zIndex:3, bottom:20, alignSelf:'center', justifyContent:'space-between', paddingHorizontal:'10%', paddingVertical:'5%'}}>
                     <Icon name="home" type="entypo" color="#F04D4E"></Icon>
-                    <Icon name="marker" type="foundation" color="#F04D4E"></Icon>
+                    <TouchableOpacity onPress={()=>{navigation.navigate('Map')}}><Icon name="marker" type="foundation" color="#F04D4E"></Icon></TouchableOpacity>
                     <Icon name="bell" type="material-community" color="#F04D4E"></Icon>
                     <Icon name="user" type="font-awesome" color="#F04D4E"></Icon>
                 </View>

@@ -9,6 +9,8 @@ import Register from './src/screens/register';
 import Metrics from './src/screens/metrics';
 import Calibrate from './src/screens/calibrate';
 import Home from './src/screens/home';
+import Map from './src/screens/map';
+import Notif from './src/screens/notifications';
 
 
 const Stack = createStackNavigator();
@@ -48,7 +50,17 @@ function MyStack() {
         name="Home" 
         component={Home} 
         options={{ headerShown: false}} 
-      /> 
+      />
+      <Stack.Screen 
+        name="Map" 
+        component={Map} 
+        options={{ headerShown: false}} 
+      />
+      <Stack.Screen 
+        name="Notif" 
+        component={Notif} 
+        options={{ headerShown: false}} 
+      />  
     </Stack.Navigator>
   );
 }

@@ -78,8 +78,8 @@ const styles = StyleSheet.create({
         alignSelf:'flex-start',
     },
     calibrate: {
-        width:'40%',
-        height:'25%',
+        width:'30%',
+        height:'20%',
         resizeMode:'contain',
         alignSelf:'flex-start',
     },
