@@ -1,7 +1,8 @@
 import Head from "next/head";
-import Navbar from "@/components/home/Navbar";
-import Hero from "@/components/home/Hero";
 import Landing from "@/components/home/Landing";
+import Features from "@/components/home/Features";
+import Redis from "@/components/home/Redis";
+import Footer from "@/components/home/Footer";
 
 export default function Home() {
   return (
@@ -12,10 +13,9 @@ export default function Home() {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <Landing />
-
-      {/* <section className='w-full px-6 pb-12 antialiased bg-white'>
-        <Hero />
-      </section> */}
+      <Features />
+      <Redis />
+      <Footer />
     </div>
   );
 }

@@ -1,4 +1,6 @@
+import Router from "next/router";
 import React, { useState } from "react";
+import Navbar from "./Navbar";
 import SocialSignIn from "./SocialSignIn";
 
 const Landing = () => {
@@ -6,16 +8,7 @@ const Landing = () => {
 
   return (
     <React.Fragment>
-      <div className='container max-w-6xl mx-auto px-8 xl:px-0'>
-        <div className='flex items-center justify-between h-20'>
-          <img className='w-8' src='/images/logored.png' alt='logo' />
-          <a
-            onClick={() => setOpen(true)}
-            className='cursor-pointer flex items-center justify-center px-3 py-2 mb-3 text-sm text-white bg-primary hover:bg-primary-light rounded-full sm:mb-0 hover:bg-primary-dark transition-colors duration-150 sm:w-auto'>
-            Get Started
-          </a>
-        </div>
-      </div>
+      <Navbar />
       <section className='px-2 py-8 bg-white dark:bg-black md:px-0'>
         <div className='container items-center max-w-6xl px-8 mx-auto xl:px-5'>
           <div className='flex flex-wrap items-center sm:-mx-3'>
@@ -37,26 +30,10 @@ const Landing = () => {
                     target='_blank'
                     className='cursor-pointer flex items-center justify-center w-full px-6 py-3 mb-3 text-lg text-white bg-primary rounded-md sm:mb-0 hover:bg-primary-dark transition-colors duration-150 sm:w-auto'>
                     Get Started
-                    <svg
-                      className='w-6 h-6 text-white icon icon-tabler icon-tabler-rocket'
-                      xmlns='http://www.w3.org/2000/svg'
-                      width='44'
-                      height='44'
-                      viewBox='0 0 24 24'
-                      strokeWidth='1.5'
-                      stroke='currentColor'
-                      fill='none'
-                      strokeLinecap='round'
-                      strokeLinejoin='round'>
-                      <path stroke='none' d='M0 0h24v24H0z' fill='none' />
-                      <path d='M4 13a8 8 0 0 1 7 7a6 6 0 0 0 3 -5a9 9 0 0 0 6 -8a3 3 0 0 0 -3 -3a9 9 0 0 0 -8 6a6 6 0 0 0 -5 3' />
-                      <path d='M7 14a6 6 0 0 0 -3 6a6 6 0 0 0 6 -3' />
-                      <circle cx='15' cy='9' r='1' />
-                    </svg>
                   </a>
                   <a
-                    href='#'
-                    className='flex items-center justify-center px-6 py-3 text-primary font-bold transition-colors duration-150 bg-white border-2 border-primary rounded-md hover:bg-primary hover:text-white'>
+                    onClick={() => Router.push("/about")}
+                    className='cursor-pointer flex items-center justify-center px-6 py-3 text-primary font-bold transition-colors duration-150 bg-white border-2 border-primary rounded-md hover:bg-primary hover:text-white'>
                     Learn More
                   </a>
                 </div>
