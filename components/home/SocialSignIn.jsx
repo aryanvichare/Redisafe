@@ -4,6 +4,8 @@ import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
 import { useAuth } from "@/lib/auth";
 
+import Router from "next/router";
+
 const SocialSignIn = ({ setOpen }) => {
   const auth = useAuth();
 
@@ -39,7 +41,9 @@ const SocialSignIn = ({ setOpen }) => {
         </div>
         <div className='mt-4 px-4 flex flex-col space-y-4 items-center justify-center'>
           <button
-            onClick={() => auth.signInWithGoogle()}
+            onClick={() =>
+              auth.signInWithGoogle().then(() => Router.push("/dashboard"))
+            }
             className='bg-white w-full flex flex-row justify-center items-center rounded shadow-sm transition duration-200 ease-in-out transform hover:-translate-y-1'>
             <div className='bg-white inline-block p-2 rounded m-1'>
               <FcGoogle size={32} />
