@@ -19,11 +19,12 @@ export default function Home() {
       });
     const [calibrated,setCalibrated] = useState(false);
     const [pulse, setPulse] = useState({"pulse":[65,67,76,85,64,78,70,80,85,73]})
-    const [health, setHealth] = useState({"length":3,"gsrraw":["471","472"],
-    "gsrdev":["2","3"],"time":["1621201310","1621201322"],
-    "pulse":["88","89"],"oxygen":["99","100"],
-    "temperature":["97.1","97.1"],
-    "chain":[{"index":0,"transactions":[],"timestamp":1621200566.6504688,"previous_hash":"0","nonce":0,"data":"REDISAFE","hash":"a95bb536872ffb23634caf96caa1e55971417d0ec0140ae799e81f599b61798d"},{"index":1,"transactions":[{"gsrdev":"2","gsrraw":"471","oxygen":"99","pulse":"88","temperature":"97.1","time":"1621201310"}],"timestamp":1621201347.389345,"previous_hash":"a95bb536872ffb23634caf96caa1e55971417d0ec0140ae799e81f599b61798d","nonce":0,"data":"xxxxxxxxxxxxxx","hash":"005d15b446202fc1e8fe16479dc8cd4d188752e903be9f1101a0c2edc653e956"},{"index":2,"transactions":[{"gsrdev":"3","gsrraw":"472","oxygen":"100","pulse":"89","temperature":"97.1","time":"1621201322"}],"timestamp":1621201403.7492485,"previous_hash":"005d15b446202fc1e8fe16479dc8cd4d188752e903be9f1101a0c2edc653e956","nonce":0,"data":"xxxxxxxxxxxxxx","hash":"0035540db4670b0734d45beb41c8eef780c67654d759f556dbbcdd76a3cd5be5"}]});
+    const [health, setHealth] = useState({"length": 12, "gsrraw": ["471", "472", "469", "468", "467", "463", "468", "469", "473", "474", "472"], "gsrdev": ["2",
+    "3", "0", "-1", "-2", "-6", "-1", "0", "4", "5", "3"], "time": ["1621201310", "1621201322", "1621205559", "1621205576",
+    "1621205583", "1621205598", "1621205634", "1621205639", "1621205644", "1621205644", "1621205659"], "pulse": ["88", "89",
+    "93", "91", "92", "90", "91", "91", "91", "87", "88"], "oxygen": ["99", "100", "99", "99", "99", "99", "98", "100",
+    "100", "100", "99"], "temperature": ["97.1", "97.1", "97.2", "97.1", "97.0", "97.1", "97.2", "97.0", "97.0", "96.8",
+    "96.9"]});
 
     const _getHealthData = () => {
         fetch('https://us-central1-aiot-fit-xlab.cloudfunctions.net/healthchain',{
@@ -37,6 +38,12 @@ export default function Home() {
         .then(data => {
             console.log(JSON.stringify(data),"Data");
             setHealth(data);
+            let i=0;
+            let arr = [];
+            for(i-0;i<data.length;i++){
+                arr[i]=parseInt(data.pulse[i]);
+            }
+            setPulse({"pulse":arr});
             
         });
     }
@@ -44,7 +51,7 @@ export default function Home() {
     useEffect(()=>{
         _getHealthData();
 
-    },[calibrated])
+    },[])
 
    
     if(fontLoaded){
@@ -121,7 +128,7 @@ export default function Home() {
                     elevation: 19,
                     borderRadius:15, marginTop:'5%', paddingHorizontal:'10%',borderColor:"#fabbbb", borderWidth:1}}>
                         <ImageBackground source={require('../assets/O2.png')} style={{width:'100%', height:'40%'}} imageStyle={{resizeMode:'contain'}}>
-                    <Text style={styles.btnlabel}>98.5%</Text>
+                    <Text style={styles.btnlabel}>{health.oxygen[0]}%</Text>
                     <Text style={styles.subtitle2}>SPO2 Level</Text>
                     </ImageBackground>
                 </LinearGradient>
@@ -141,7 +148,7 @@ export default function Home() {
                     elevation: 19,
                     borderRadius:15, marginTop:'10%', paddingHorizontal:'10%',borderColor:"#fabbbb", borderWidth:1}}>
                         <ImageBackground source={require('../assets/O2.png')} style={{width:'100%', height:'40%'}} imageStyle={{resizeMode:'contain'}}>
-                    <Text style={styles.btnlabel}>37°C</Text>
+                    <Text style={styles.btnlabel}>{health.temperature[0]}°C</Text>
                     <Text style={styles.subtitle2}>Temperature</Text>
                     </ImageBackground>
                 </LinearGradient>
