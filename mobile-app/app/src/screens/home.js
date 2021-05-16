@@ -19,11 +19,30 @@ export default function Home() {
       });
     const [calibrated,setCalibrated] = useState(false);
     const [pulse, setPulse] = useState({"pulse":[65,67,76,85,64,78,70,80,85,73]})
+    const [health, setHealth] = useState({"length":3,"gsrraw":["471","472"],
+    "gsrdev":["2","3"],"time":["1621201310","1621201322"],
+    "pulse":["88","89"],"oxygen":["99","100"],
+    "temperature":["97.1","97.1"],
+    "chain":[{"index":0,"transactions":[],"timestamp":1621200566.6504688,"previous_hash":"0","nonce":0,"data":"REDISAFE","hash":"a95bb536872ffb23634caf96caa1e55971417d0ec0140ae799e81f599b61798d"},{"index":1,"transactions":[{"gsrdev":"2","gsrraw":"471","oxygen":"99","pulse":"88","temperature":"97.1","time":"1621201310"}],"timestamp":1621201347.389345,"previous_hash":"a95bb536872ffb23634caf96caa1e55971417d0ec0140ae799e81f599b61798d","nonce":0,"data":"xxxxxxxxxxxxxx","hash":"005d15b446202fc1e8fe16479dc8cd4d188752e903be9f1101a0c2edc653e956"},{"index":2,"transactions":[{"gsrdev":"3","gsrraw":"472","oxygen":"100","pulse":"89","temperature":"97.1","time":"1621201322"}],"timestamp":1621201403.7492485,"previous_hash":"005d15b446202fc1e8fe16479dc8cd4d188752e903be9f1101a0c2edc653e956","nonce":0,"data":"xxxxxxxxxxxxxx","hash":"0035540db4670b0734d45beb41c8eef780c67654d759f556dbbcdd76a3cd5be5"}]});
+
+    const _getHealthData = () => {
+        fetch('https://us-central1-aiot-fit-xlab.cloudfunctions.net/healthchain',{
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({"action":"getchaindata","eid":"4"}),
+          })
+        .then(response => response.json())
+        .then(data => {
+            console.log(JSON.stringify(data),"Data");
+            setHealth(data);
+            
+        });
+    }
 
     useEffect(()=>{
-        setTimeout(() => {
-            setCalibrated(true);
-        }, 3000);
+        _getHealthData();
 
     },[calibrated])
 

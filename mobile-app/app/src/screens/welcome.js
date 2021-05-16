@@ -25,7 +25,7 @@ export default function Welcome() {
                 <View style={{marginTop:'60%'}}></View>
                 <Image source={require('../assets/logo.png')} style={styles.logo}></Image>
                 <Text style={{fontFamily:'H', fontSize:40, color:"#FFF"}}><Text style={{color:"#FBCACA"}}>Redi</Text>Safe</Text>
-                <Text style={{fontFamily:'B', fontSize:18, width:'70%', color:"#FFF"}}>Health monitoring, COVID data, yada yada lorem ipsum bruh</Text>
+                <Text style={{fontFamily:'B', fontSize:18, width:'70%', color:"#FFF"}}>Health monitoring, contact tracing, COVID alerts at your fingertips.</Text>
                 <View style={{marginTop:'15%'}}></View>
                 <TouchableOpacity onPress={()=>navigation.navigate('Login')}>
                 <LinearGradient

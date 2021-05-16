@@ -45,7 +45,7 @@ export default function Login() {
 
 
 
-               <TouchableOpacity onPress={()=>navigation.navigate('Login')}>
+               <TouchableOpacity onPress={()=>navigation.navigate('Home')}>
                 <LinearGradient
                     // Button Linear Gradient
                     colors={['#FFFFFF', '#F4ACAC']}
