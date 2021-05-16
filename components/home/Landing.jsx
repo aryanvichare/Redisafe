@@ -1,7 +1,7 @@
-import Router from "next/router";
 import React, { useState } from "react";
 import Navbar from "./Navbar";
 import SocialSignIn from "./SocialSignIn";
+import { Link, animateScroll as scroll } from "react-scroll";
 
 const Landing = () => {
   const [open, setOpen] = useState(false);
@@ -31,11 +31,18 @@ const Landing = () => {
                     className='cursor-pointer flex items-center justify-center w-full px-6 py-3 mb-3 text-lg text-white bg-primary rounded-md sm:mb-0 hover:bg-primary-dark transition-colors duration-150 sm:w-auto'>
                     Get Started
                   </a>
-                  <a
-                    onClick={() => Router.push("/about")}
-                    className='cursor-pointer flex items-center justify-center px-6 py-3 text-primary font-bold transition-colors duration-150 bg-white border-2 border-primary rounded-md hover:bg-primary hover:text-white'>
-                    Learn More
-                  </a>
+                  <Link
+                    className='item-link'
+                    activeClass='active'
+                    to='features'
+                    spy={true}
+                    smooth={true}
+                    offset={-70}
+                    duration={500}>
+                    <a className='cursor-pointer flex items-center justify-center px-6 py-3 text-primary font-bold transition-colors duration-150 bg-white border-2 border-primary rounded-md hover:bg-primary hover:text-white'>
+                      Learn More
+                    </a>
+                  </Link>
                 </div>
               </div>
             </div>

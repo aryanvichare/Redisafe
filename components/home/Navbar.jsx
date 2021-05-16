@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Router from "next/router";
 import SocialSignIn from "./SocialSignIn";
+import { Link, animateScroll as scroll } from "react-scroll";
 
 const Navbar = ({ ...props }) => {
   const [open, setOpen] = useState(false);
@@ -14,12 +15,20 @@ const Navbar = ({ ...props }) => {
           src='/images/logored.png'
           alt='logo'
         />
+
         <div className='flex space-x-4 items-center'>
-          <a
-            onClick={() => Router.push("/about")}
-            className='cursor-pointer flex items-center justify-center px-3 py-2 mb-3 text-sm font-bold text-primary hover:text-primary-light rounded-full sm:mb-0 hover:bg-primary-dark transition-colors duration-150 sm:w-auto'>
-            About
-          </a>
+          <Link
+            className='item-link'
+            activeClass='active'
+            to='features'
+            spy={true}
+            smooth={true}
+            offset={-70}
+            duration={500}>
+            <a className='cursor-pointer flex items-center justify-center px-3 py-2 mb-3 text-sm font-bold text-primary hover:text-primary-light rounded-full sm:mb-0 hover:bg-primary-dark transition-colors duration-150 sm:w-auto'>
+              About
+            </a>
+          </Link>
           <a
             onClick={() => setOpen(true)}
             className='cursor-pointer flex items-center justify-center px-3 py-2 mb-3 text-sm text-white bg-primary hover:bg-primary-light rounded-full sm:mb-0 hover:bg-primary-dark transition-colors duration-150 sm:w-auto'>
