@@ -39,10 +39,10 @@ export default function Calibrate() {
                 <Text style={{fontFamily:'H', fontSize:45, color:"#FFF", lineHeight:45}}>{!calibrated ? "Calibrating Hardware...":"Hardware Calibrated"}</Text>
                 {!calibrated &&<Text style={{fontFamily:'B', fontSize:24, color:"#FFF", marginTop:'5%'}}>Please wait, this may take a while...</Text>}
                
-                {!calibrated &&<TouchableOpacity onPress={()=>navigation.navigate('Register')}><Text style={{color:"#FCDBDC", fontFamily:"E", fontSize:20, marginLeft:'1%',
+                {!calibrated &&<TouchableOpacity onPress={()=>navigation.navigate('Homr')}><Text style={{color:"#FCDBDC", fontFamily:"E", fontSize:20, marginLeft:'1%',
                  marginTop:'5%', backgroundColor:`rgba(252, 219, 220, 0.3)`, width:'17%', lineHeight:18}}>or skip</Text></TouchableOpacity>}
 
-                {calibrated &&<TouchableOpacity onPress={()=>navigation.navigate('Calibrate')}>
+                {calibrated &&<TouchableOpacity onPress={()=>navigation.navigate('Home')}>
                 <LinearGradient
                     // Button Linear Gradient
                     colors={['#FFFFFF', '#F4ACAC']}
@@ -78,8 +78,8 @@ const styles = StyleSheet.create({
         alignSelf:'flex-start',
     },
     calibrate: {
-        width:'40%',
-        height:'25%',
+        width:'30%',
+        height:'20%',
         resizeMode:'contain',
         alignSelf:'flex-start',
     },
