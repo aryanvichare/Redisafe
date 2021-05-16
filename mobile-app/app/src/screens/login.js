@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, Text, View, Image, Button, ImageBackground, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Image, Button, ImageBackground, TouchableOpacity, TextInput } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import Svg, { Line } from 'react-native-svg';
 import { Icon } from 'react-native-elements'
@@ -7,7 +7,7 @@ import { useFonts } from 'expo-font';
 import { LinearGradient } from 'expo-linear-gradient';
 
 
-export default function Welcome() {
+export default function Login() {
     const navigation = useNavigation();
     const [fontLoaded] = useFonts({
         B: require('../assets/fonts/bold.ttf'),
@@ -22,33 +22,41 @@ export default function Welcome() {
         <View style={styles.container}>
             <ImageBackground source={require('../assets/bg.png')} style={{height:'100%', width:'100%'}} imageStyle={{resizeMode:'cover', alignSelf:'flex-end'}}>
             <View style={{marginHorizontal:'7.5%', marginTop:'10%'}}>
-                <View style={{marginTop:'60%'}}></View>
                 <Image source={require('../assets/logo.png')} style={styles.logo}></Image>
-                <Text style={{fontFamily:'H', fontSize:40, color:"#FFF"}}><Text style={{color:"#FBCACA"}}>Redi</Text>Safe</Text>
-                <Text style={{fontFamily:'B', fontSize:18, width:'70%', color:"#FFF"}}>Health monitoring, COVID data, yada yada lorem ipsum bruh</Text>
-                <View style={{marginTop:'15%'}}></View>
-                <TouchableOpacity onPress={()=>navigation.navigate('Login')}>
+                <View style={{marginTop:'20%'}}></View>
+                <Text style={{fontFamily:'H', fontSize:55, color:"#FFF", lineHeight:55}}>Welcome Back</Text>
+                <Text style={{fontFamily:'B', fontSize:24, color:"#FFF", marginTop:'10%'}}>Login to your existing account</Text>
+                <View style={{marginTop:'15%', justifyContent:'space-evenly'}}></View>
+               <View style={{backgroundColor:`rgba(252, 219, 220, 0.5)`, borderRadius:15, marginHorizontal:'5%', paddingHorizontal:'5%', paddingVertical:'1.5%', flexDirection:'row'}}>
+                   <View style={{width:'90%'}}>
+                       <Text style={{fontFamily:'E', color:"#FAD8D8"}}>Email address</Text>
+                       <TextInput placeholder="user@domain.com" style={{fontFamily:"B", color:"#FFF", fontSize:20}} placeholderTextColor="#FAD8D8"></TextInput>
+                   </View>
+                   <Icon name="email" type="material" color="#FAD8D8" size={35} style={{textAlign:'right'}}></Icon>
+               </View>
+
+               <View style={{marginTop:'5%', backgroundColor:`rgba(252, 219, 220, 0.2)`, borderRadius:15, marginHorizontal:'5%', paddingHorizontal:'5%', paddingVertical:'1.5%', flexDirection:'row'}}>
+                   <View style={{width:'90%'}}>
+                       <Text style={{fontFamily:'E', color:"#FAD8D8"}}>Password</Text>
+                       <TextInput secureTextEntry placeholder="******" style={{fontFamily:"B", color:"#FFF", fontSize:20}} placeholderTextColor="#FAD8D8"></TextInput>
+                   </View>
+                   <Icon name="eye" type="ant-design" color={`rgba(250, 216, 216, 0.5)`} size={35} style={{textAlign:'right'}}></Icon>
+               </View>
+
+
+
+               <TouchableOpacity onPress={()=>navigation.navigate('Login')}>
                 <LinearGradient
                     // Button Linear Gradient
                     colors={['#FFFFFF', '#F4ACAC']}
                     start={[1,-0.3]}
                     end={[1,1]}
                     style={styles.btn}>
-                    <View style={{flexDirection:'row', justifyContent:'space-between'}}>
                     <Text style={styles.btnlabel}>Login</Text>
-                    <Icon name="rightcircle" type="ant-design" color="#F04D4E" style={{textAlign:'right'}}></Icon>
-                    </View>
                 </LinearGradient>
                 </TouchableOpacity>
-
-                <TouchableOpacity onPress={()=>navigation.navigate('Signup')}>
-                <View style={styles.btn2}>
-                    <View style={{flexDirection:'row', justifyContent:'space-between'}}>
-                    <Text style={styles.btnlabel2}>Sign up</Text>
-                    <Icon name="rightcircle" type="ant-design" color="#FFF" style={{textAlign:'right'}}></Icon>
-                    </View>
-                </View>
-                </TouchableOpacity>
+                <TouchableOpacity><Text style={{color:"#FCDBDC", fontFamily:"E", fontSize:20, marginLeft:'10%',
+                 marginTop:'5%', backgroundColor:`rgba(252, 219, 220, 0.3)`, width:'25%', lineHeight:18}}>or sign up</Text></TouchableOpacity>
 
                 </View>
                 </ImageBackground>
@@ -69,8 +77,8 @@ const styles = StyleSheet.create({
         backgroundColor: '#F04D4E',
     },
     logo: {
-        width:'20%',
-        height:'20%',
+        width:'15%',
+        height:'15%',
         resizeMode:'contain',
         alignSelf:'flex-start',
     },
@@ -102,8 +110,8 @@ const styles = StyleSheet.create({
     },
     btnlabel: {
         fontFamily:'H',
-        fontSize:20,
-        textAlign:'left',
+        fontSize:24,
+        textAlign:'center',
         color:'#F04D4E'
 
     },
@@ -122,7 +130,7 @@ const styles = StyleSheet.create({
     btnlabel2: {
         fontFamily:'H',
         fontSize:20,
-        textAlign:'left',
+        textAlign:'center',
         color:'#FFF'
 
     }
