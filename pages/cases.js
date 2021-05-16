@@ -1,44 +1,46 @@
-import React from "react";
+import React, { useState } from "react";
 import LightNav from "@/components/dashboard/LightNav";
 import ProfileSidebar from "@/components/dashboard/ProfileSidebar";
-import ReactMapGL, { Source, Layer } from "react-map-gl";
+import MapGL, {
+  Popup,
+  NavigationControl,
+  FullscreenControl,
+  ScaleControl,
+  GeolocateControl,
+} from "react-map-gl";
 
-const vaccinatedGeojson = {
-  type: "FeatureCollection",
-  source: "ethnicity",
-  properties: {
-    ethnicity: "White",
-  },
-  features: [
-    {
-      type: "Feature",
-      geometry: { type: "Point", coordinates: [-122.4, 37.8] },
-    },
-  ],
+import Pins from "../components/dashboard/Pins";
+import CityInfo from "../components/dashboard/CityInfo";
+
+import CITIES from "../data/cities.json";
+
+const geolocateStyle = {
+  top: 0,
+  left: 0,
+  padding: "10px",
 };
 
-const vaccinatedlayerStyle = {
-  id: "population",
-  type: "circle",
-  source: "ethnicity",
-  sourceLayer: "sf2010",
-  paint: {
-    circleColor: [
-      "match",
-      ["get", "ethnicity"],
-      "White",
-      "#fbb03b",
-      "Black",
-      "#223b53",
-      "Hispanic",
-      "#e55e5e",
-      "Asian",
-      "#3bb2d0",
-    ],
-  },
+const fullscreenControlStyle = {
+  top: 36,
+  left: 0,
+  padding: "10px",
+};
+
+const navStyle = {
+  top: 72,
+  left: 0,
+  padding: "10px",
+};
+
+const scaleControlStyle = {
+  bottom: 36,
+  left: 0,
+  padding: "10px",
 };
 
 const Cases = () => {
+  const [popupInfo, setPopupInfo] = useState(null);
+
   const [viewport, setViewport] = React.useState({
     longitude: -122.45,
     latitude: 37.78,
@@ -63,17 +65,32 @@ const Cases = () => {
                 </span>
               </div>
             </div>
-            <ReactMapGL
+            <MapGL
               mapStyle={"mapbox://styles/mapbox/dark-v8"}
               mapboxApiAccessToken={process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN}
               {...viewport}
               width='100%'
               height='25vw'
               onViewportChange={setViewport}>
-              <Source id='my-data' type='geojson' data={vaccinatedGeojson}>
-                <Layer {...vaccinatedlayerStyle} />
-              </Source>
-            </ReactMapGL>
+              <Pins data={CITIES} onClick={setPopupInfo} />
+
+              {popupInfo && (
+                <Popup
+                  tipSize={5}
+                  anchor='top'
+                  longitude={popupInfo.longitude}
+                  latitude={popupInfo.latitude}
+                  closeOnClick={false}
+                  onClose={setPopupInfo}>
+                  <CityInfo info={popupInfo} />
+                </Popup>
+              )}
+
+              <GeolocateControl style={geolocateStyle} />
+              <FullscreenControl style={fullscreenControlStyle} />
+              <NavigationControl style={navStyle} />
+              <ScaleControl style={scaleControlStyle} />
+            </MapGL>
           </div>
           <div className='col-span-12 md:col-span-3'>
             <ProfileSidebar />
