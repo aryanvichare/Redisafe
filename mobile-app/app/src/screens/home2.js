@@ -19,17 +19,15 @@ export default function Home2() {
         H: require('../assets/fonts/heavy.ttf'),
 
       });
-    const [calibrated,setCalibrated] = useState(false);
     const [pulse, setPulse] = useState({"pulse":[65,67,76,85,64,78,70,80,85,73]})
     const [date, setDate] = useState('');
+    
 
     useEffect(()=>{
-        setTimeout(() => {
-            setCalibrated(true);
-        }, 3000);
-        currentDate();
+     
+ 
 
-    },[calibrated])
+    },[])
 
 
     const currentDate=()=>{
@@ -41,6 +39,7 @@ export default function Home2() {
       setDate(date+'/'+month+'/'+year);
  
      }
+     
      const [cluster, setCluster] = useState({"cluster":[
         {latitude: 37.18825,longitude: -112.4324},
         {latitude: 37.78815,longitude: -122.4314},

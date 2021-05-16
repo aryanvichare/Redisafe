@@ -18,6 +18,11 @@ export default function Map() {
         H: require('../assets/fonts/heavy.ttf'),
 
       });
+
+    const [covid, setCovid] = useState({"length":3,"lat":["28.063136646557602","28.06410239722876"],"lon":["-80.6238106525923","-80.61911117922998"],"time":["1621201322","1621205559"],"covid":["low","low"],"chain":[{"index":0,"transactions":[],"timestamp":1621200636.5674877,"previous_hash":"0","nonce":0,"data":"REDISAFE","hash":"c422dac9892a1916d9ba59e30bc4cad71b218253fb0ee99316cebd09f9b647ea"},{"index":1,"transactions":[{"lat":"28.063136646557602","lon":"-80.6238106525923","covid":"low","time":"1621201322"}],"timestamp":1621205479.8964634,"previous_hash":"c422dac9892a1916d9ba59e30bc4cad71b218253fb0ee99316cebd09f9b647ea","nonce":0,"data":"xxxxxxxxxxxxxx","hash":"00c599822d2a0ba7eab7784505d25548166f25acc2b2d953b827f35d36d85828"},{"index":2,"transactions":[{"lat":"28.06410239722876","lon":"-80.61911117922998","covid":"low","time":"1621205559"}],"timestamp":1621205602.9146283,"previous_hash":"00c599822d2a0ba7eab7784505d25548166f25acc2b2d953b827f35d36d85828","nonce":0,"data":"xxxxxxxxxxxxxx","hash":"00a9c8b267beb94d5c8069f9da2c53aa97c76d7607456424ac30db9bb871c4dd"}]})
+    const [arr, setArr] = useState('');
+
+
     const [markers, setMarkers] = useState({"marker":[
         {latitude: 37.78825,longitude: -122.4324},
         {latitude: 37.68825,longitude: -119.4324},
@@ -33,8 +38,48 @@ export default function Map() {
             {latitude: 36.78555,longitude: -120.4324}]})
 
 
+    const _restructure = (covid) => {
+        let len = covid.lat.length;
+        let lat = covid.lat;
+        let lon = covid.lon;
+        let status = covid.covid;
+        let time = covid.time;
+        let arr = [];
+        let i=0;
+        for(i=0;i<len;i++){
+            arr[i]={"latlng":{"latitude":lat[i],"longtitude":lon[i]},"covid":status[i],"time":time[i]}
+        }
+        console.log(arr);
+        setArr(arr);
+
+     }
+
+     const _getCOVIDData = () => {
+        fetch('https://us-central1-aiot-fit-xlab.cloudfunctions.net/healthchain',{
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({"action":"getchaindata","eid":"5"}),
+          })
+        .then(response => response.json())
+        .then(data => {
+            console.log(JSON.stringify(data),"Data");
+            setCovid(data);
+            _restructure(data);
+            
+        });
+    }
+
+    useEffect(()=>{
+     
+        _getCOVIDData();
+
+    },[])
+
+
    
-    if(fontLoaded){
+    if(fontLoaded && arr){
     return (
         <View style={styles.container}>
             <View style={{marginHorizontal:'7.5%', marginTop:'10%'}}>
@@ -63,6 +108,9 @@ export default function Map() {
                     ))}
                     {cluster.cluster.map((marker, index) => (
                         <Circ center={marker} radius={2000} fillColor={`rgba(240, 77, 78,0.3)`} strokeColor="#f04d4e"/>
+                    ))}
+                    {arr.map((marker, index) => (
+                    <Circ center={marker.latlng} radius={2000} fillColor={marker.covid=='high'?`rgba(240, 77, 78,0.3)`:`rgba(230, 27, 78,0.3)`} strokeColor="#f04d4e"/>
                     ))}
                     
                     </MapView>
