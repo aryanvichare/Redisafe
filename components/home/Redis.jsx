@@ -34,7 +34,7 @@ const Redis = () => {
                 <span className='box-border text-xl font-bold leading-none tracking-wider border-solid text-gray-50'>
                   Secure
                 </span>
-                <p className='box-border mx-0 mt-2 mb-0 font-normal leading-snug text-center text-gray-300 border-solid sm:text-left'>
+                <p className='box-border mx-0 mt-2 mb-0 font-normal leading-snug text-center text-white border-solid sm:text-left'>
                   We strictly only deal with vendors that provide top notch
                   security infrastructure.
                 </p>
@@ -62,7 +62,7 @@ const Redis = () => {
                 <span className='box-border text-xl font-bold leading-none tracking-wider text-center border-solid sm:text-left text-gray-50'>
                   Amazing Support
                 </span>
-                <p className='box-border mx-0 mt-2 mb-0 font-normal leading-snug text-center text-gray-300 border-solid sm:text-left'>
+                <p className='box-border mx-0 mt-2 mb-0 font-normal leading-snug text-center text-white border-solid sm:text-left'>
                   We provide world-class support to help you integrate into your
                   system.
                 </p>
@@ -90,7 +90,7 @@ const Redis = () => {
                 <span className='box-border text-xl font-bold leading-none tracking-wider text-center border-solid sm:text-left text-gray-50'>
                   Configurations
                 </span>
-                <p className='box-border mx-0 mt-2 mb-0 font-normal leading-snug text-center text-gray-300 border-solid sm:text-left'>
+                <p className='box-border mx-0 mt-2 mb-0 font-normal leading-snug text-center text-white border-solid sm:text-left'>
                   Fully configurable interface to fit into your application and
                   website.
                 </p>
@@ -118,7 +118,7 @@ const Redis = () => {
                 <span className='box-border text-xl font-bold leading-none tracking-wider text-center border-solid sm:text-left text-gray-50'>
                   Developer API
                 </span>
-                <p className='box-border mx-0 mt-2 mb-0 font-normal leading-snug text-center text-gray-300 border-solid sm:text-left'>
+                <p className='box-border mx-0 mt-2 mb-0 font-normal leading-snug text-center text-white border-solid sm:text-left'>
                   The Developer API will allow you to leverage our tools and
                   build quicker.
                 </p>
@@ -146,7 +146,7 @@ const Redis = () => {
                 <span className='box-border text-xl font-bold leading-none tracking-wider text-center border-solid sm:text-left text-gray-50'>
                   Fast and Reliable
                 </span>
-                <p className='box-border mx-0 mt-2 mb-0 font-normal leading-snug text-center text-gray-300 border-solid sm:text-left'>
+                <p className='box-border mx-0 mt-2 mb-0 font-normal leading-snug text-center text-white border-solid sm:text-left'>
                   Our system has a 99.9% uptime and is extremely fast and
                   reliable.
                 </p>
@@ -174,7 +174,7 @@ const Redis = () => {
                 <span className='box-border text-xl font-bold leading-none tracking-wider text-center border-solid sm:text-left text-gray-50'>
                   Open Source
                 </span>
-                <p className='box-border mx-0 mt-2 mb-0 font-normal leading-snug text-center text-gray-300 border-solid sm:text-left'>
+                <p className='box-border mx-0 mt-2 mb-0 font-normal leading-snug text-center text-white border-solid sm:text-left'>
                   Free and open-source tools that will continue to grow.
                 </p>
               </div>
