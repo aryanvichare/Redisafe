@@ -1,35 +1,35 @@
 import React, { useState, useEffect } from "react";
 import LightNav from "@/components/dashboard/LightNav";
-
-import {
-  ResponsiveContainer,
-  Line,
-  LineChart,
-  CartesianGrid,
-  XAxis,
-  YAxis,
-  Tooltip,
-} from "recharts";
-
-import moment from "moment";
 import axios from "axios";
 import ProfileSidebar from "@/components/dashboard/ProfileSidebar";
 import LiveDataMetrics from "@/components/dashboard/LiveDataMetrics";
+import Graph from "@/components/dashboard/Graph";
 
 const Dashboard = () => {
   const [liveData, setLiveData] = useState(null);
   const [painData, setPainData] = useState(null);
   const [glucoseData, setGlucoseData] = useState(null);
+  const [oxygenData, setOxygenData] = useState(null);
+  const [pulseData, setPulseData] = useState(null);
+  const [temperatureData, setTemperatureData] = useState(null);
 
   useEffect(() => {
     const fetchLiveReadings = async () => {
       try {
-        const res = await axios.post("/api/proxy", { action: "getdata" });
+        const res = await axios.post("/api/proxy", {
+          action: "getchaindata",
+          eid: "4",
+        });
         setLiveData(res.data);
 
-        const { times, glucose, gsrDev } = res.data;
+        console.log(res.data);
+
+        const { times, glucose, gsrDev, oxygen, pulse, temperature } = res.data;
         const formattedGlucoseData = [];
         const formattedPainData = [];
+        const formattedOxygenData = [];
+        const formattedPulseData = [];
+        const formattedTemperatureData = [];
 
         times.forEach((time, idx) => {
           formattedGlucoseData.push({
@@ -41,10 +41,28 @@ const Dashboard = () => {
             name: parseInt(time),
             pain_level: gsrDev[idx],
           });
+
+          formattedOxygenData.push({
+            name: parseInt(time),
+            oxygen_level: oxygen[idx],
+          });
+
+          formattedPulseData.push({
+            name: parseInt(time),
+            pulse_level: pulse[idx],
+          });
+
+          formattedTemperatureData.push({
+            name: parseInt(time),
+            temperature_level: temperature[idx],
+          });
         });
 
         setGlucoseData(formattedGlucoseData);
         setPainData(formattedPainData);
+        setOxygenData(formattedOxygenData);
+        setPulseData(formattedPulseData);
+        setTemperatureData(formattedTemperatureData);
       } catch (error) {
         console.log(`Failed to fetch live data readings with error ${error}`);
       }
@@ -72,60 +90,39 @@ const Dashboard = () => {
               </div>
               <div className='mt-8'>
                 {liveData && <LiveDataMetrics data={liveData} />}
-                <h5 className='font-extrabold text-red-600 text-center mb-2'>
-                  Glucose Levels (mg/dL) vs. Time
-                </h5>
-                <ResponsiveContainer width='100%' height={400}>
-                  <LineChart data={glucoseData}>
-                    <XAxis
-                      dataKey='name'
-                      tickFormatter={(timestamp) =>
-                        moment(timestamp).format("h:mm:ss a")
-                      }
-                      type='number'
-                      domain={["auto", "auto"]}
-                      scale='time'
-                    />
-                    <YAxis />
-                    <Tooltip
-                      labelFormatter={(name) => moment(name).format("h:mm a")}
-                    />
-                    <CartesianGrid stroke='#eee' strokeDasharray='5 5' />
-                    <Line
-                      type='monotone'
-                      dataKey='glucose_level'
-                      stroke='#D64545'
-                    />
-                  </LineChart>
-                </ResponsiveContainer>
+                <Graph
+                  title='Glucose Levels (mg/dL) vs. Time'
+                  data={glucoseData}
+                  data_key='glucose_level'
+                />
               </div>
               <div className='mt-12'>
-                <h5 className='font-extrabold text-red-600 text-center mb-2'>
-                  Galvanic Skin Response Deviation (μV) vs. Time
-                </h5>
-                <ResponsiveContainer width='100%' height={400}>
-                  <LineChart data={painData}>
-                    <XAxis
-                      dataKey='name'
-                      // tickFormatter={(timestamp) =>
-                      //   moment(timestamp).format("h:mm:ss a")
-                      // }
-                      type='number'
-                      domain={["auto", "auto"]}
-                      scale='time'
-                    />
-                    <YAxis />
-                    <Tooltip
-                      labelFormatter={(name) => moment(name).format("h:mm a")}
-                    />
-                    <CartesianGrid stroke='#eee' strokeDasharray='5 5' />
-                    <Line
-                      type='monotone'
-                      dataKey='pain_level'
-                      stroke='#D64545'
-                    />
-                  </LineChart>
-                </ResponsiveContainer>
+                <Graph
+                  title='Galvanic Skin Response Deviation (μV) vs. Time'
+                  data={painData}
+                  data_key='pain_level'
+                />
+              </div>
+              <div className='mt-12'>
+                <Graph
+                  title='Pulse (bpm) vs. Time'
+                  data={pulseData}
+                  data_key='pulse_level'
+                />
+              </div>
+              <div className='mt-12'>
+                <Graph
+                  title='Oxygen Saturation (%) vs. Time'
+                  data={oxygenData}
+                  data_key='oxygen_level'
+                />
+              </div>
+              <div className='mt-12'>
+                <Graph
+                  title='Body Temperature (°F) vs. Time'
+                  data={temperatureData}
+                  data_key='temperature_level'
+                />
               </div>
             </div>
           </div>

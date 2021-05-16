@@ -26,10 +26,10 @@ const Features = () => {
               Real-time Vitals & Alerts
             </h3>
             <p className='mt-5 text-lg text-gray-700 text md:text-left'>
-              Access your heart rate, SpO2 levels, body temperature, galvanic
-              skin response and more with our dashboard. Monitor your activity,
-              such as steps taken or calories burnt, and also atmospheric
-              details like ambient humidity, air pressure, etc.
+              Access your heart rate, SpO<sub>2</sub> levels, body temperature,
+              galvanic skin response and more with our dashboard. Monitor your
+              activity, such as steps taken or calories burnt, and also
+              atmospheric details like ambient humidity, air pressure, etc.
               <br /> <br />
               Get notified of any personal/general health emergencies, potential
               contact with COVID patients or if you enter a containment zone.
