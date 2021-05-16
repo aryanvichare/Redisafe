@@ -7,7 +7,7 @@ import { useFonts } from 'expo-font';
 import { LinearGradient } from 'expo-linear-gradient';
 
 
-export default function Login() {
+export default function Metrics() {
     const navigation = useNavigation();
     const [fontLoaded] = useFonts({
         B: require('../assets/fonts/bold.ttf'),
@@ -23,24 +23,32 @@ export default function Login() {
             <ImageBackground source={require('../assets/bg.png')} style={{height:'100%', width:'100%'}} imageStyle={{resizeMode:'cover', alignSelf:'flex-end'}}>
             <View style={{marginHorizontal:'7.5%', marginTop:'10%'}}>
                 <Image source={require('../assets/logo.png')} style={styles.logo}></Image>
-                <View style={{marginTop:'20%'}}></View>
-                <Text style={{fontFamily:'H', fontSize:55, color:"#FFF", lineHeight:55}}>Welcome Back</Text>
-                <Text style={{fontFamily:'B', fontSize:24, color:"#FFF", marginTop:'10%'}}>Login to your existing account</Text>
+                <View style={{marginTop:'5%'}}></View>
+                <Text style={{fontFamily:'E', fontSize:45, color:"#FFF", lineHeight:45, width:'80%'}}>Personal Metrics</Text>
+                <Text style={{fontFamily:'B', fontSize:20, color:"#FFF", marginTop:'5%'}}>We don’t store any of this data, this is for your health analytics.</Text>
                 <View style={{marginTop:'15%', justifyContent:'space-evenly'}}></View>
-               <View style={{backgroundColor:`rgba(252, 219, 220, 0.5)`, borderRadius:15, marginHorizontal:'5%', paddingHorizontal:'5%', paddingVertical:'1.5%', flexDirection:'row'}}>
+               
+
+               <View style={{marginTop:'5%', backgroundColor:`rgba(252, 219, 220, 0.2)`, borderRadius:15, paddingHorizontal:'5%', paddingVertical:'1.5%', flexDirection:'row'}}>
                    <View style={{width:'90%'}}>
-                       <Text style={{fontFamily:'E', color:"#FAD8D8"}}>Email address</Text>
-                       <TextInput placeholder="user@domain.com" style={{fontFamily:"B", color:"#FFF", fontSize:20}} placeholderTextColor="#FAD8D8"></TextInput>
+                       <Text style={{fontFamily:'E', color:"#FAD8D8"}}>Age</Text>
+                       <TextInput placeholder="years" style={{fontFamily:"B", color:"#FFF", fontSize:20}} placeholderTextColor="#FAD8D8"></TextInput>
                    </View>
-                   <Icon name="email" type="material" color="#FAD8D8" size={35} style={{textAlign:'right'}}></Icon>
                </View>
 
-               <View style={{marginTop:'5%', backgroundColor:`rgba(252, 219, 220, 0.2)`, borderRadius:15, marginHorizontal:'5%', paddingHorizontal:'5%', paddingVertical:'1.5%', flexDirection:'row'}}>
+               <View style={{marginTop:'5%', backgroundColor:`rgba(252, 219, 220, 0.2)`, borderRadius:15, paddingHorizontal:'5%', paddingVertical:'1.5%', flexDirection:'row'}}>
                    <View style={{width:'90%'}}>
-                       <Text style={{fontFamily:'E', color:"#FAD8D8"}}>Password</Text>
-                       <TextInput secureTextEntry placeholder="******" style={{fontFamily:"B", color:"#FFF", fontSize:20}} placeholderTextColor="#FAD8D8"></TextInput>
+                       <Text style={{fontFamily:'E', color:"#FAD8D8"}}>Height</Text>
+                       <TextInput placeholder="ft" style={{fontFamily:"B", color:"#FFF", fontSize:20}} placeholderTextColor="#FAD8D8"></TextInput>
                    </View>
-                   <Icon name="eye" type="ant-design" color={`rgba(250, 216, 216, 0.5)`} size={35} style={{textAlign:'right'}}></Icon>
+                   <Icon name="human-male-height" type="material-community" color={`rgba(250, 216, 216, 0.5)`} size={35} style={{textAlign:'right'}}></Icon>
+               </View>
+               <View style={{marginTop:'5%', backgroundColor:`rgba(252, 219, 220, 0.2)`, borderRadius:15, paddingHorizontal:'5%', paddingVertical:'1.5%', flexDirection:'row'}}>
+                   <View style={{width:'93%'}}>
+                       <Text style={{fontFamily:'E', color:"#FAD8D8"}}>Weight</Text>
+                       <TextInput placeholder="lb" style={{fontFamily:"B", color:"#FFF", fontSize:20}} placeholderTextColor="#FAD8D8"></TextInput>
+                   </View>
+                   <Icon name="weight" type="font-awesome-5" color={`rgba(250, 216, 216, 0.5)`} size={25} style={{textAlign:'right', marginTop:'25%'}}></Icon>
                </View>
 
 
@@ -52,11 +60,11 @@ export default function Login() {
                     start={[1,-0.3]}
                     end={[1,1]}
                     style={styles.btn}>
-                    <Text style={styles.btnlabel}>Login</Text>
+                    <Text style={styles.btnlabel}>Continue</Text>
                 </LinearGradient>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={()=>navigation.navigate('Register')}><Text style={{color:"#FCDBDC", fontFamily:"E", fontSize:20, marginLeft:'10%',
-                 marginTop:'5%', backgroundColor:`rgba(252, 219, 220, 0.3)`, width:'25%', lineHeight:18}}>or sign up</Text></TouchableOpacity>
+                <TouchableOpacity><Text style={{color:"#FCDBDC", fontFamily:"E", fontSize:20, marginLeft:'10%',
+                 marginTop:'5%', backgroundColor:`rgba(252, 219, 220, 0.3)`, width:'19%', lineHeight:18}}>or skip</Text></TouchableOpacity>
 
                 </View>
                 </ImageBackground>

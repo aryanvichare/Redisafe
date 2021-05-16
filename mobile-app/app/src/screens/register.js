@@ -24,7 +24,7 @@ export default function Register() {
             <View style={{marginHorizontal:'7.5%', marginTop:'10%'}}>
                 <Image source={require('../assets/logo.png')} style={styles.logo}></Image>
                 <View style={{marginTop:'5%'}}></View>
-                <Text style={{fontFamily:'H', fontSize:45, color:"#FFF", lineHeight:45}}>Create an Account</Text>
+                <Text style={{fontFamily:'E', fontSize:45, color:"#FFF", lineHeight:45}}>Create an Account</Text>
                 <Text style={{fontFamily:'B', fontSize:20, color:"#FFF", marginTop:'5%'}}>Start your health journey today with a free account!</Text>
                 <View style={{marginTop:'15%', justifyContent:'space-evenly'}}></View>
                <View style={{backgroundColor:`rgba(252, 219, 220, 0.5)`, borderRadius:15, paddingHorizontal:'5%', paddingVertical:'1.5%', flexDirection:'row'}}>
@@ -60,7 +60,7 @@ export default function Register() {
 
 
 
-               <TouchableOpacity onPress={()=>navigation.navigate('Login')}>
+               <TouchableOpacity onPress={()=>navigation.navigate('Metrics')}>
                 <LinearGradient
                     // Button Linear Gradient
                     colors={['#FFFFFF', '#F4ACAC']}
@@ -70,7 +70,7 @@ export default function Register() {
                     <Text style={styles.btnlabel}>Signup</Text>
                 </LinearGradient>
                 </TouchableOpacity>
-                <TouchableOpacity><Text style={{color:"#FCDBDC", fontFamily:"E", fontSize:20, marginLeft:'10%',
+                <TouchableOpacity  onPress={()=>navigation.navigate('Login')}><Text style={{color:"#FCDBDC", fontFamily:"E", fontSize:20, marginLeft:'10%',
                  marginTop:'5%', backgroundColor:`rgba(252, 219, 220, 0.3)`, width:'19%', lineHeight:18}}>or login</Text></TouchableOpacity>
 
                 </View>
