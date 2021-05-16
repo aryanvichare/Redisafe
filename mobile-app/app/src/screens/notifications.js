@@ -25,9 +25,9 @@ export default function Notif() {
         {latitude: 36.78825,longitude: -120.4324}]})
         
 
-    const [notif,setNotif] = useState({"notifications":[{"time":"05/16/2021","msg":"45 new cases nearby"},{"time":"05/16/2021","msg":"15 new cases nearby"},
-    {"time":"05/16/2021","msg":"15 new cases nearby"},{"time":"05/16/2021","msg":"15 new cases nearby"},{"time":"05/16/2021","msg":"15 new cases nearby"},{"time":"05/16/2021","msg":"15 new cases nearby"}
-    ,{"time":"05/16/2021","msg":"15 new cases nearby"},{"time":"05/16/2021","msg":"15 new cases nearby"},{"time":"05/16/2021","msg":"15 new cases nearby"}]})
+    const [notif,setNotif] = useState({"notifications":[{"time":"05/16/2021","msg":"45 new cases nearby"},{"time":"05/16/2021","msg":"You were in a containment zone! Take precautions!"}]})
+    const [notif3,setNotif3] = useState({"notifications":[{"time":"05/14/2021","msg":"15 new cases nearby"},
+    {"time":"05/13/2021","msg":"45 new cases nearby"},{"time":"05/13/2021","msg":"Fall detected! SOS call initiated"}]})
 
 
 
@@ -56,12 +56,43 @@ export default function Notif() {
                           
     
                         <Text style={styles.btnlabel}>{data.msg}</Text>
-                        <Icon name="primitive-dot" type="octicon" color="#F04D4E"></Icon>
                       </View>
                       
                      
                     </LinearGradient>
             )});
+
+            
+                const notifications3 = notif3.notifications.map((data) => {
+                    return (
+                        <LinearGradient
+                        // View Linear Gradient
+                        colors={['#FFFFFF', '#fabbbb']}
+                        start={[0,-0.3]}
+                        end={[0,1.9]}
+                        style={{backgroundColor:"#fabbbb", paddingVertical:'2.5%', width:'90%', alignSelf:'center', marginLeft:'2.5%',
+                        shadowOffset: {
+                            width: 0,
+                            height: 4,
+                        },
+                        shadowOpacity: 0.01,
+                        shadowRadius: 5,
+                        
+                        elevation: 2,
+                        borderRadius:15, marginTop:'2.5%', paddingHorizontal:'10%'}}>
+                            
+          
+                                <Text style={styles.subtitle}>{data.time}</Text>
+                           
+                              <View style={{flexDirection:'row', display:'flex', justifyContent:'space-between'}}>
+                                  
+            
+                                <Text style={styles.btnlabel}>{data.msg}</Text>
+                              </View>
+                              
+                             
+                            </LinearGradient>
+                    )});
 
 
    
@@ -75,12 +106,18 @@ export default function Notif() {
                 </View>
                 </View>
                 <View style={{marginTop:'5%'}}></View>
-                <View style={{height:'75%',marginBottom:'10%'}}>
+                <Text style={styles.title}>Today</Text>
+                <View style={{height:'22%',marginBottom:'5%'}}>     
                 <ScrollView overScrollMode="auto">
                     {notifications}
                 </ScrollView>
                 </View>
-                
+                <Text style={styles.title}>This Week</Text>
+                <View style={{height:'55%',marginBottom:'5%'}}>     
+                <ScrollView overScrollMode="auto">
+                    {notifications3}
+                </ScrollView>
+                </View>
 
 
 
@@ -135,7 +172,8 @@ const styles = StyleSheet.create({
         fontFamily:'H',
         fontSize:25,
         textAlign:'left',
-        color:'#FFD6D6'
+        color:'#F04D4E',
+        marginLeft:'10%'
     },
     subtitle: {
         fontFamily:'E',

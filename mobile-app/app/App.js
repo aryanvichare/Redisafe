@@ -11,6 +11,7 @@ import Calibrate from './src/screens/calibrate';
 import Home from './src/screens/home';
 import Map from './src/screens/map';
 import Notif from './src/screens/notifications';
+import Home2 from './src/screens/home2';
 
 
 const Stack = createStackNavigator();
@@ -49,6 +50,11 @@ function MyStack() {
       <Stack.Screen 
         name="Home" 
         component={Home} 
+        options={{ headerShown: false}} 
+      />
+      <Stack.Screen 
+        name="Home2" 
+        component={Home2} 
         options={{ headerShown: false}} 
       />
       <Stack.Screen 
