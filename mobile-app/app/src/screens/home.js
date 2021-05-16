@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, Image, Button, ImageBackground, TouchableOpacity, TextInput, ActivityIndicator } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import Svg, { Line, Path } from 'react-native-svg';
+import Svg, { Line, Path, Circle } from 'react-native-svg';
 import { Icon } from 'react-native-elements'
 import { useFonts } from 'expo-font';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -123,7 +123,7 @@ export default function Home() {
                 
                 </View>
                 </View>
-                <View style={{flexDirection:'row', marginTop:'-100%', paddingHorizontal:'5%'}}>
+                <View style={{flexDirection:'row', marginTop:'-80%', paddingHorizontal:'5%'}}>
                 <LinearGradient
                     // View Linear Gradient
                     colors={['#FFFFFF', '#fabbbb']}
@@ -139,17 +139,52 @@ export default function Home() {
                     
                     elevation: 19,
                     borderRadius:15, marginTop:'10%', paddingHorizontal:'10%',borderColor:"#fabbbb", borderWidth:1}}>
-                        <ImageBackground source={require('../assets/O2.png')} style={{width:'100%', height:'40%'}} imageStyle={{resizeMode:'contain'}}>
-                        <View style={{flexDirection:'row', justifyContent:'space-between', paddingTop:'5%'}}>
-                    <Text style={{fontFamily:'H', fontSize:25, textAlign:'left', color:'#F04D4E'}}>Walking   </Text>
-                    </View>
-                    <ActivityIndicator size="large" color="#FF0000"  />
-                    <Text style={styles.btnlabel}>37°C</Text>
-                    <Text style={styles.subtitle2}>Temperature</Text>
+                    <Text style={{fontFamily:'H', fontSize:25, textAlign:'center', color:'#F04D4E'}}>Steps</Text>
+                    <Svg style={{height:'25%'}}>
+                    <Circle cx="50" cy="50" r="30" fill="transparent" stroke="#fca4a4" strokeWidth={4} />
+                    <Path d="M 27 27 A 30 30 0 0 1 73 73" stroke="#FF5C5C" fill="transparent" strokeWidth="5" strokeLinecap="round"/>
+                    
+                    </Svg>
+                    <Text style={styles.btnlabel}>7500</Text>
+                    <Text style={styles.subtitle2}>steps to reach daily goal</Text>
+                </LinearGradient>
+                <LinearGradient
+                    // View Linear Gradient
+                    colors={['#FFFFFF', '#fabbbb']}
+                    start={[0,-0.6]}
+                    end={[0,1.4]}
+                    style={{backgroundColor:"#F4ACAC", paddingVertical:'5%', width:'45%', height:'55%', alignSelf:'flex-end', marginLeft:'2.5%',
+                    shadowOffset: {
+                        width: 0,
+                        height: 6,
+                    },
+                    shadowOpacity: 0.5,
+                    shadowRadius: 10,
+                    
+                    elevation: 19,
+                    borderRadius:15, marginTop:'10%', paddingHorizontal:'10%',borderColor:"#fabbbb", borderWidth:1}}>
+                        <ImageBackground source={require('../assets/calories.png')} style={{width:'100%', height:'65%'}} imageStyle={{resizeMode:'contain', marginTop:'55%'}}>
+                    <Text style={{fontFamily:'H', fontSize:25, textAlign:'center', color:'#F04D4E'}}>Calories Burnt</Text>
+                    <View style={{marginTop:'80%'}}></View>
+                    <Text style={styles.btnlabel}>1278</Text>
+                    <Text style={styles.subtitle2}>burnt today</Text>
                     </ImageBackground>
                 </LinearGradient>
                 </View>
                 </ImageBackground>
+
+                <View style={{flexDirection:'row', width:'90%', borderRadius:10, backgroundColor:"#FEF5F5", shadowOffset: {
+                        width: 0,
+                        height: 6,
+                    },
+                    shadowOpacity: 0.5,
+                    shadowRadius: 10,
+                    elevation: 10, position:'absolute', zIndex:3, bottom:20, alignSelf:'center', justifyContent:'space-between', paddingHorizontal:'10%', paddingVertical:'5%'}}>
+                    <Icon name="home" type="entypo" color="#F04D4E"></Icon>
+                    <Icon name="marker" type="foundation" color="#F04D4E"></Icon>
+                    <Icon name="bell" type="material-community" color="#F04D4E"></Icon>
+                    <Icon name="user" type="font-awesome" color="#F04D4E"></Icon>
+                </View>
             
         </View>
     );
@@ -201,7 +236,7 @@ const styles = StyleSheet.create({
         fontFamily:'E',
         color:"#FF5C5C",
         fontSize:17,
-        textAlign:'left',
+        textAlign:'center',
     },
     btn: {
         backgroundColor:"#F4ACAC",
@@ -216,7 +251,7 @@ const styles = StyleSheet.create({
     btnlabel: {
         fontFamily:'H',
         fontSize:40,
-        textAlign:'left',
+        textAlign:'center',
         color:'#F04D4E'
 
     },
