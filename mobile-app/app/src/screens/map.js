@@ -117,7 +117,7 @@ export default function Map() {
                         <Circ center={marker} radius={2000} fillColor={`rgba(240, 77, 78,0.3)`} strokeColor="#f04d4e"/>
                     ))}
                     {arr.map((marker, index) => (
-                    <Circ center={marker.latlng} radius={2000} fillColor={marker.covid=='high'?`rgba(240, 77, 78,0.3)`:`rgba(230, 27, 78,0.3)`} strokeColor="#f04d4e"/>
+                    <Circ center={marker.latlng} radius={2000} fillColor={marker.covid=='high'?`rgba(240, 77, 78,0.3)`:`rgba(230, 27, 78,0.1)`} strokeColor="#f04d4e"/>
                     ))}
                     
                     </MapView>
