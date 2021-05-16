@@ -6,6 +6,7 @@ import { Icon } from 'react-native-elements'
 import { useFonts } from 'expo-font';
 import { LinearGradient } from 'expo-linear-gradient';
 import MapView,{Marker,Circle as Circ} from 'react-native-maps';
+import { ScrollView } from 'react-native-gesture-handler';
 
 
 
@@ -22,6 +23,45 @@ export default function Notif() {
         {latitude: 37.78825,longitude: -122.4324},
         {latitude: 37.68825,longitude: -119.4324},
         {latitude: 36.78825,longitude: -120.4324}]})
+        
+
+    const [notif,setNotif] = useState({"notifications":[{"time":"05/16/2021","msg":"45 new cases nearby"},{"time":"05/16/2021","msg":"15 new cases nearby"},
+    {"time":"05/16/2021","msg":"15 new cases nearby"},{"time":"05/16/2021","msg":"15 new cases nearby"},{"time":"05/16/2021","msg":"15 new cases nearby"},{"time":"05/16/2021","msg":"15 new cases nearby"}
+    ,{"time":"05/16/2021","msg":"15 new cases nearby"},{"time":"05/16/2021","msg":"15 new cases nearby"},{"time":"05/16/2021","msg":"15 new cases nearby"}]})
+
+
+
+    const notifications = notif.notifications.map((data) => {
+            return (
+                <LinearGradient
+                // View Linear Gradient
+                colors={['#FFFFFF', '#fabbbb']}
+                start={[0,-0.3]}
+                end={[0,1.9]}
+                style={{backgroundColor:"#fabbbb", paddingVertical:'2.5%', width:'90%', alignSelf:'center', marginLeft:'2.5%',
+                shadowOffset: {
+                    width: 0,
+                    height: 4,
+                },
+                shadowOpacity: 0.01,
+                shadowRadius: 5,
+                
+                elevation: 2,
+                borderRadius:15, marginTop:'2.5%', paddingHorizontal:'10%'}}>
+                    
+  
+                        <Text style={styles.subtitle}>{data.time}</Text>
+                   
+                      <View style={{flexDirection:'row', display:'flex', justifyContent:'space-between'}}>
+                          
+    
+                        <Text style={styles.btnlabel}>{data.msg}</Text>
+                        <Icon name="primitive-dot" type="octicon" color="#F04D4E"></Icon>
+                      </View>
+                      
+                     
+                    </LinearGradient>
+            )});
 
 
    
@@ -31,58 +71,17 @@ export default function Notif() {
             <View style={{marginHorizontal:'7.5%', marginTop:'10%'}}>
                 <View style={{flexDirection:'row'}}>
                     <Icon name="chevron-left" size={45} color="#F04D4E"></Icon>
-                <Text style={{fontFamily:'H', fontSize:40, color:"#F04D4E", lineHeight:47}}>Around you</Text>
+                <Text style={{fontFamily:'H', fontSize:40, color:"#F04D4E", lineHeight:47}}>Notifications</Text>
                 </View>
                 </View>
                 <View style={{marginTop:'5%'}}></View>
-                <View style={{width:'100%', height:'100%'}}>
-                <MapView
-                    initialRegion={{
-                    latitude: 37.78825,
-                    longitude: -122.4324,
-                    latitudeDelta: 0.0922,
-                    longitudeDelta: 0.0421,
-                    }}
-                    style={{width:420, height:690}}
-                >
-                    {markers.marker.map((marker, index) => (
-                        <Marker
-                        key={index}
-                        coordinate={marker}
-                        icon={require('../assets/dot.png')}
-                        />
-                    ))}
-                    {markers.marker.map((marker, index) => (
-                        <Circ center={marker} radius={15} fillColor={`rgba(240, 77, 78,0.3)`} strokeColor="#f04d4e"/>
-                    ))}
-                    
-                    </MapView>
+                <View style={{height:'75%',marginBottom:'10%'}}>
+                <ScrollView overScrollMode="auto">
+                    {notifications}
+                </ScrollView>
                 </View>
                 
 
-
-
-
-
-                
-
-                <View style={{marginTop:'5%'}}></View>
-
-                <View style={{flexDirection:'row', width:'30%', borderRadius:15, backgroundColor:"#ffeded", shadowOffset: {
-                        width: 0,
-                        height: 6,
-                    },
-                    shadowOpacity: 0.5,
-                    shadowRadius: 10,
-                    elevation: 10, position:'absolute', zIndex:3, bottom:100, alignSelf:'flex-start', justifyContent:'space-between', 
-                    paddingHorizontal:'10%', paddingVertical:'5%', borderWidth:1, borderColor:"#faacac", marginLeft:'5%'}}>
-                    <Icon name="primitive-dot" type="octicon" color="#F04D4E"></Icon>
-                    <Text style={styles.subtitle}>Visited</Text>
-                </View>
-
-
-
-           
 
 
                 <View style={{flexDirection:'row', width:'90%', borderRadius:15, backgroundColor:"#FEF5F5", shadowOffset: {
@@ -140,8 +139,8 @@ const styles = StyleSheet.create({
     },
     subtitle: {
         fontFamily:'E',
-        color:"#F04D4E",
-        fontSize:20,
+        color:"#fc9d9d",
+        fontSize:15,
         textAlign:'left',
     },
     subtitle2: {
@@ -161,9 +160,9 @@ const styles = StyleSheet.create({
 
     },
     btnlabel: {
-        fontFamily:'H',
-        fontSize:40,
-        textAlign:'center',
+        fontFamily:'E',
+        fontSize:22,
+        textAlign:'left',
         color:'#F04D4E'
 
     },
