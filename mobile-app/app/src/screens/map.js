@@ -23,6 +23,15 @@ export default function Map() {
         {latitude: 37.68825,longitude: -119.4324},
         {latitude: 36.78825,longitude: -120.4324}]})
 
+    const [cluster, setCluster] = useState({"cluster":[
+            {latitude: 37.18825,longitude: -112.4324},
+            {latitude: 37.78815,longitude: -122.4314},
+            {latitude: 37.74855,longitude: -122.4264},
+            {latitude: 47.68825,longitude: -119.4324},
+            {latitude: 47.68815,longitude: -119.4124},
+            {latitude: 36.78525,longitude: -120.4124},
+            {latitude: 36.78555,longitude: -120.4324}]})
+
 
    
     if(fontLoaded){
@@ -52,8 +61,8 @@ export default function Map() {
                         icon={require('../assets/dot.png')}
                         />
                     ))}
-                    {markers.marker.map((marker, index) => (
-                        <Circ center={marker} radius={15} fillColor={`rgba(240, 77, 78,0.3)`} strokeColor="#f04d4e"/>
+                    {cluster.cluster.map((marker, index) => (
+                        <Circ center={marker} radius={2000} fillColor={`rgba(240, 77, 78,0.3)`} strokeColor="#f04d4e"/>
                     ))}
                     
                     </MapView>

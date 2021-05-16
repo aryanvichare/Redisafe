@@ -6,10 +6,12 @@ import { Icon } from 'react-native-elements'
 import { useFonts } from 'expo-font';
 import { LinearGradient } from 'expo-linear-gradient';
 import { ScrollView } from 'react-native-gesture-handler';
+import MapView,{Marker,Circle as Circ} from 'react-native-maps';
 
 
 
-export default function Home() {
+
+export default function Home2() {
     const navigation = useNavigation();
     const [fontLoaded] = useFonts({
         B: require('../assets/fonts/bold.ttf'),
@@ -19,13 +21,34 @@ export default function Home() {
       });
     const [calibrated,setCalibrated] = useState(false);
     const [pulse, setPulse] = useState({"pulse":[65,67,76,85,64,78,70,80,85,73]})
+    const [date, setDate] = useState('');
 
     useEffect(()=>{
         setTimeout(() => {
             setCalibrated(true);
         }, 3000);
+        currentDate();
 
     },[calibrated])
+
+
+    const currentDate=()=>{
+ 
+      var date = new Date().getDate();
+      var month = new Date().getMonth() + 1;
+      var year = new Date().getFullYear();
+ 
+      setDate(date+'/'+month+'/'+year);
+ 
+     }
+     const [cluster, setCluster] = useState({"cluster":[
+        {latitude: 37.18825,longitude: -112.4324},
+        {latitude: 37.78815,longitude: -122.4314},
+        {latitude: 37.74855,longitude: -122.4264},
+        {latitude: 47.68825,longitude: -119.4324},
+        {latitude: 47.68815,longitude: -119.4124},
+        {latitude: 36.78525,longitude: -120.4124},
+        {latitude: 36.78555,longitude: -120.4324}]})
 
    
     if(fontLoaded){
@@ -42,9 +65,9 @@ export default function Home() {
                 <View style={{marginTop:'10%'}}></View>
 
                 <View style={{flexDirection:'row', justifyContent:'space-between'}}>
-                <Text style={{fontFamily:'H', fontSize:45, color:"#F04D4E", lineHeight:45}}>Hey, Anne</Text>
-                <TouchableOpacity onPress={()=>navigation.navigate('Home2')}><View style={{flexDirection:'row'}}><Text style={{fontFamily:'E', fontSize:20, color:"#F04D4E", lineHeight:50}}>See More </Text>
-                <Icon name="chevron-circle-right" type="font-awesome" color="#F04D4E" size={18} style={{marginTop:"100%"}}></Icon></View></TouchableOpacity>
+                <Text style={{fontFamily:'H', fontSize:30, color:"#F04D4E", lineHeight:30}}>Around You</Text>
+                <TouchableOpacity onPress={()=>navigation.navigate('Home')}><View style={{flexDirection:'row'}}><Icon name="chevron-circle-left" type="font-awesome" color="#F04D4E" size={18} style={{marginTop:"20%"}}></Icon><Text style={{fontFamily:'E', fontSize:20, color:"#F04D4E", lineHeight:30}}> Go Back </Text>
+                </View></TouchableOpacity>
                 </View>
 
                 <View style={{marginTop:'5%'}}></View>
@@ -53,7 +76,7 @@ export default function Home() {
                     colors={[ '#FFA5A6', "#F04D4E"]}
                     start={[1,-0.3]}
                     end={[1,1]}
-                    style={{backgroundColor:"#F04D4E",borderRadius:20, borderColor:"#FFA5A6", borderWidth:1, width:184,shadowColor: "#FF0000",
+                    style={{backgroundColor:"#F04D4E",borderRadius:20, borderColor:"#FFA5A6", borderWidth:1, width:'100%',shadowColor: "#FF0000",
                     shadowOffset: {
                         width: 0,
                         height: 6,
@@ -63,80 +86,42 @@ export default function Home() {
                     
                     elevation: 19,}}
                 >
+                    
                     <View style={{flexDirection:'row', justifyContent:'space-between', paddingHorizontal:'5%', paddingTop:'5%'}}>
-                    <Text style={styles.title}>Heart Rate</Text>
+                    <View><Text style={styles.title}>COVID-19</Text>
+                    <Text style={styles.subtitle}>{date}</Text></View>
                     <Icon name="rightcircle" type="ant-design" color="#FEF3F3"></Icon>
                     </View>
-                    <Svg width="207" height="100">
-                    <Path
-                        transform="scale(1, -1) translate(0, -100)"
-                        d={`M0 ${pulse.pulse[0]} C 20,${pulse.pulse[1]}, 40,${pulse.pulse[2]}, 60,${pulse.pulse[3]} S80,${pulse.pulse[4]}, 100 ${pulse.pulse[5]}, S120,${pulse.pulse[6]}, 140,${pulse.pulse[7]}, S160,${pulse.pulse[8]}, 180,${pulse.pulse[9]}`}
-                        fill="none"
-                        stroke="#FFF"
-                        strokeLinecap="round"
-                        strokeWidth={4}
-                    />
-                    </Svg>
-                    <View style={{paddingHorizontal:'10%', paddingBottom:'5%'}}>
-                    <Text style={styles.subtitle}>Normal</Text>
-                    <Text style={{fontFamily:'H', fontSize:50, color:"#FFF"}}>{pulse.pulse[9]}<Text style={{color:"#FFD6D6", fontSize:20}}> BPM</Text></Text>
-                    <Image source={require('../assets/pulse.png')} style={{height:70, width:70, resizeMode:'contain', position:'absolute', right:0, bottom:0}}></Image>
+                    <View style={{paddingHorizontal:'5%', paddingBottom:'5%'}}>
+                    <Text style={{fontFamily:'H', fontSize:50, color:"#FFF"}}>2440<Text style={{color:"#FFD6D6", fontSize:20}}>{'\n'}new cases today {'\n'}within 10 miles</Text></Text>
+                    <MapView
+                    initialRegion={{
+                    latitude: 37.78825,
+                    longitude: -122.4324,
+                    latitudeDelta: 0.0922,
+                    longitudeDelta: 0.0421,
+                    }}
+                    style={{width:150, height:150, position:'absolute', right:20, top:-50}}
+                >
+                    {cluster.cluster.map((marker, index) => (
+                        <Circ center={marker} radius={2000} fillColor={`rgba(240, 77, 78,0.3)`} strokeColor="#f04d4e"/>
+                    ))}
+                </MapView>
                     </View>
                     
                 </LinearGradient>
 
-                <View style={{}}>
-                <LinearGradient
-                    // View Linear Gradient
-                    colors={['#FFFFFF', '#fabbbb']}
-                    start={[0,-0.6]}
-                    end={[0,1.4]}
-                    style={{backgroundColor:"#F4ACAC", paddingVertical:'5%', width:'90%', alignSelf:'flex-end', marginLeft:'2.5%',
-                    shadowOffset: {
-                        width: 0,
-                        height: 6,
-                    },
-                    shadowOpacity: 0.5,
-                    shadowRadius: 10,
-                    
-                    elevation: 19,
-                    borderRadius:15, marginTop:'5%', paddingHorizontal:'10%',borderColor:"#fabbbb", borderWidth:1}}>
-                        <ImageBackground source={require('../assets/O2.png')} style={{width:'100%', height:'40%'}} imageStyle={{resizeMode:'contain'}}>
-                    <Text style={styles.btnlabel}>98.5%</Text>
-                    <Text style={styles.subtitle2}>SPO2 Level</Text>
-                    </ImageBackground>
-                </LinearGradient>
-                <LinearGradient
-                    // View Linear Gradient
-                    colors={['#FFFFFF', '#fabbbb']}
-                    start={[0,-0.6]}
-                    end={[0,1.4]}
-                    style={{backgroundColor:"#F4ACAC", paddingVertical:'5%', width:'90%', alignSelf:'flex-end', marginLeft:'2.5%',
-                    shadowOffset: {
-                        width: 0,
-                        height: 6,
-                    },
-                    shadowOpacity: 0.5,
-                    shadowRadius: 10,
-                    
-                    elevation: 19,
-                    borderRadius:15, marginTop:'10%', paddingHorizontal:'10%',borderColor:"#fabbbb", borderWidth:1}}>
-                        <ImageBackground source={require('../assets/O2.png')} style={{width:'100%', height:'40%'}} imageStyle={{resizeMode:'contain'}}>
-                    <Text style={styles.btnlabel}>37°C</Text>
-                    <Text style={styles.subtitle2}>Temperature</Text>
-                    </ImageBackground>
-                </LinearGradient>
+                
                 </View>
                 
                 </View>
-                </View>
-                <View style={{flexDirection:'row', marginTop:'-80%', paddingHorizontal:'5%'}}>
+                <View style={{flexDirection:'row'}}>
                 <LinearGradient
                     // View Linear Gradient
                     colors={['#FFFFFF', '#fabbbb']}
                     start={[0,-0.6]}
                     end={[0,1.4]}
-                    style={{backgroundColor:"#F4ACAC", paddingVertical:'5%', width:'50%', alignSelf:'flex-end', marginLeft:'2.5%',
+                    style={{backgroundColor:"#F4ACAC", paddingVertical:'5%', width:'27.5%', alignSelf:'center', marginLeft:'10%',
                     shadowOffset: {
                         width: 0,
                         height: 6,
@@ -145,22 +130,16 @@ export default function Home() {
                     shadowRadius: 10,
                     
                     elevation: 19,
-                    borderRadius:15, marginTop:'10%', paddingHorizontal:'10%',borderColor:"#fabbbb", borderWidth:1}}>
-                    <Text style={{fontFamily:'H', fontSize:25, textAlign:'center', color:'#F04D4E'}}>Steps</Text>
-                    <Svg style={{height:'25%'}}>
-                    <Circle cx="50" cy="50" r="30" fill="transparent" stroke="#fca4a4" strokeWidth={4} />
-                    <Path d="M 27 27 A 30 30 0 0 1 73 73" stroke="#FF5C5C" fill="transparent" strokeWidth="5" strokeLinecap="round"/>
-                    
-                    </Svg>
-                    <Text style={styles.btnlabel}>7500</Text>
-                    <Text style={styles.subtitle2}>steps to reach daily goal</Text>
+                    borderTopLeftRadius:15,borderBottomLeftRadius:15, marginTop:'-30%', paddingHorizontal:'5%',borderColor:"#fabbbb", borderWidth:1}}>
+                    <Text style={styles.btnlabel}>45%</Text>
+                    <Text style={styles.subtitle2}>Humidity</Text>
                 </LinearGradient>
                 <LinearGradient
                     // View Linear Gradient
                     colors={['#FFFFFF', '#fabbbb']}
                     start={[0,-0.6]}
                     end={[0,1.4]}
-                    style={{backgroundColor:"#F4ACAC", paddingVertical:'5%', width:'45%', height:'55%', alignSelf:'flex-end', marginLeft:'2.5%',
+                    style={{backgroundColor:"#F4ACAC", paddingVertical:'5%', width:'27.5%', alignSelf:'center', marginHorizontal:'0%',
                     shadowOffset: {
                         width: 0,
                         height: 6,
@@ -169,15 +148,32 @@ export default function Home() {
                     shadowRadius: 10,
                     
                     elevation: 19,
-                    borderRadius:15, marginTop:'10%', paddingHorizontal:'10%',borderColor:"#fabbbb", borderWidth:1}}>
-                        <ImageBackground source={require('../assets/calories.png')} style={{width:'100%', height:'65%'}} imageStyle={{resizeMode:'contain', marginTop:'55%'}}>
-                    <Text style={{fontFamily:'H', fontSize:25, textAlign:'center', color:'#F04D4E'}}>Calories Burnt</Text>
-                    <View style={{marginTop:'80%'}}></View>
-                    <Text style={styles.btnlabel}>1278</Text>
-                    <Text style={styles.subtitle2}>burnt today</Text>
-                    </ImageBackground>
+                    borderRadius:0, marginTop:'-30%', paddingHorizontal:'1%',borderColor:"#fabbbb", borderWidth:1}}>
+                    <Text style={styles.btnlabel}>37°C</Text>
+                    <Text style={styles.subtitle2}>Temperature</Text>
+                </LinearGradient>
+                <LinearGradient
+                    // View Linear Gradient
+                    colors={['#FFFFFF', '#fabbbb']}
+                    start={[0,-0.6]}
+                    end={[0,1.4]}
+                    style={{backgroundColor:"#F4ACAC", paddingVertical:'5%', width:'27.5%', alignSelf:'center', marginHorizontal:'0%',
+                    shadowOffset: {
+                        width: 0,
+                        height: 6,
+                    },
+                    shadowOpacity: 0.5,
+                    shadowRadius: 10,
+                    
+                    elevation: 19,
+                    borderTopRightRadius:15,borderBottomRightRadius:15, marginTop:'-30%', paddingHorizontal:'1%',borderColor:"#fabbbb", borderWidth:1}}>
+                    <Text style={styles.btnlabel}>731<Text style={{fontSize:15}}> mm Hg</Text></Text>
+                    <Text style={styles.subtitle2}>Air Pressure</Text>
                 </LinearGradient>
                 </View>
+                <TouchableOpacity onPress={()=>navigation.navigate('Map')}><View style={{flexDirection:'row'}}><Text style={{color:"#F04D4E", fontFamily:"E", fontSize:20, marginLeft:'10%',
+                 marginTop:'5%', backgroundColor:`rgba(252, 219, 220, 0.3)`, width:'50%', lineHeight:18}}>see more around you</Text>
+                 <Icon name="chevron-circle-right" type="font-awesome" color="#F04D4E" size={20} style={{marginTop:"100%"}}></Icon></View></TouchableOpacity>
                 </ImageBackground>
 
                 <View style={{flexDirection:'row', width:'90%', borderRadius:15, backgroundColor:"#FEF5F5", shadowOffset: {
@@ -257,7 +253,7 @@ const styles = StyleSheet.create({
     },
     btnlabel: {
         fontFamily:'H',
-        fontSize:40,
+        fontSize:30,
         textAlign:'center',
         color:'#F04D4E'
 
