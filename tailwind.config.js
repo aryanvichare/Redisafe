@@ -742,7 +742,7 @@ module.exports = {
         "cta-pattern": "url('/images/cta.png')",
       }),
       colors: {
-        primary: "#D64545",
+        primary: "#F04D4E",
         secondary: "#0ABDC6",
         "dark-gray": "#252529",
         "dark-gray-secondary": "303136",
