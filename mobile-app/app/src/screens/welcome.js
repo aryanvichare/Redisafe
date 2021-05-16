@@ -41,7 +41,7 @@ export default function Welcome() {
                 </LinearGradient>
                 </TouchableOpacity>
 
-                <TouchableOpacity onPress={()=>navigation.navigate('Signup')}>
+                <TouchableOpacity onPress={()=>navigation.navigate('Register')}>
                 <View style={styles.btn2}>
                     <View style={{flexDirection:'row', justifyContent:'space-between'}}>
                     <Text style={styles.btnlabel2}>Sign up</Text>
