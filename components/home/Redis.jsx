@@ -32,7 +32,7 @@ const Redis = () => {
               </span>
               <div className='mt-6 font-sans text-center border-0 border-gray-200 sm:text-left text-gray-50'>
                 <span className='box-border text-xl font-bold leading-none tracking-wider border-solid text-gray-50'>
-                  Secure
+                  Redis Caching
                 </span>
                 <p className='box-border mx-0 mt-2 mb-0 font-normal leading-snug text-center text-white border-solid sm:text-left'>
                   We strictly only deal with vendors that provide top notch
@@ -60,7 +60,7 @@ const Redis = () => {
               </span>
               <div className='mt-6 font-sans text-center border-0 border-gray-200 sm:text-left text-gray-50'>
                 <span className='box-border text-xl font-bold leading-none tracking-wider text-center border-solid sm:text-left text-gray-50'>
-                  Amazing Support
+                  Redis Pub/Sub
                 </span>
                 <p className='box-border mx-0 mt-2 mb-0 font-normal leading-snug text-center text-white border-solid sm:text-left'>
                   We provide world-class support to help you integrate into your
@@ -88,7 +88,7 @@ const Redis = () => {
               </span>
               <div className='mt-6 font-sans text-center border-0 border-gray-200 sm:text-left text-gray-50'>
                 <span className='box-border text-xl font-bold leading-none tracking-wider text-center border-solid sm:text-left text-gray-50'>
-                  Configurations
+                  RedisJSON
                 </span>
                 <p className='box-border mx-0 mt-2 mb-0 font-normal leading-snug text-center text-white border-solid sm:text-left'>
                   Fully configurable interface to fit into your application and
@@ -116,7 +116,7 @@ const Redis = () => {
               </span>
               <div className='mt-6 font-sans text-center border-0 border-gray-200 sm:text-left text-gray-50'>
                 <span className='box-border text-xl font-bold leading-none tracking-wider text-center border-solid sm:text-left text-gray-50'>
-                  Developer API
+                  RedisAI
                 </span>
                 <p className='box-border mx-0 mt-2 mb-0 font-normal leading-snug text-center text-white border-solid sm:text-left'>
                   The Developer API will allow you to leverage our tools and
@@ -144,7 +144,7 @@ const Redis = () => {
               </span>
               <div className='mt-6 font-sans text-center border-0 border-gray-200 sm:text-left text-gray-50'>
                 <span className='box-border text-xl font-bold leading-none tracking-wider text-center border-solid sm:text-left text-gray-50'>
-                  Fast and Reliable
+                  RedisTimeSeries
                 </span>
                 <p className='box-border mx-0 mt-2 mb-0 font-normal leading-snug text-center text-white border-solid sm:text-left'>
                   Our system has a 99.9% uptime and is extremely fast and
@@ -172,7 +172,7 @@ const Redis = () => {
               </span>
               <div className='mt-6 font-sans text-center border-0 border-gray-200 sm:text-left text-gray-50'>
                 <span className='box-border text-xl font-bold leading-none tracking-wider text-center border-solid sm:text-left text-gray-50'>
-                  Open Source
+                  Smartcache
                 </span>
                 <p className='box-border mx-0 mt-2 mb-0 font-normal leading-snug text-center text-white border-solid sm:text-left'>
                   Free and open-source tools that will continue to grow.
